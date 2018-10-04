@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParkingApp.Views.LoginPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid>
+                <StackLayout Padding="10"
+                         HorizontalOptions="FillAndExpand"
+                         BackgroundColor="#e6ecf7">
+                   
+                    <StackLayout Margin="0,20" >
+
+                        <Label Text="UserName"
+                               Margin="0,5,0,5"
+                               TextColor="Red"/>
+                        <Entry Placeholder="Enter UserName"
+                               Text="{Binding UserName}"
+                               />
+                        <Label Text="Password"
+                               TextColor="Red"
+                               Margin="0,5,0,5"/>
+                        <Entry Placeholder="Enter Password"
+                               IsPassword="{Binding HidePassword}"                               
+                               Text="{Binding Password}"/>
+                        <StackLayout Orientation="Horizontal"
+                                     Margin="5,10,0,10">
+                            <Label Text="Hide Password"
+                                   FontSize="Small"
+                                   HorizontalOptions="Start"/>
+                            <Switch IsToggled="{Binding HidePassword}"
+                                    HorizontalOptions="Center"  />
+                        </StackLayout>
+
+                        <Button Text="Login"
+                                TextColor="White"
+                                Command="{Binding LoginCommand}"
+                                BackgroundColor="Black"/>
+
+                        <BoxView HeightRequest="2"
+                                 Margin="10"
+                                 BackgroundColor="Red"/>                   
+
+                        <Frame OutlineColor="Black"
+                           BackgroundColor="White"
+                           CornerRadius="5">
+
+                            <StackLayout VerticalOptions="End">
+                                <Label Text="Server IP"
+                               TextColor="LightGreen"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Entry Grid.Column="0"
+                                   Placeholder="ip1"
+                                   Text="{Binding ip1}"
+                                   Keyboard="Numeric"
+                                   HorizontalTextAlignment="Center"/>
+                                    <Entry Grid.Column="1" 
+                                   Placeholder="ip2"
+                                   Keyboard="Numeric"
+                                   Text="{Binding ip2}" 
+                                   HorizontalTextAlignment="Center"/>
+                                    <Entry Grid.Column="2" 
+                                   Placeholder="ip3" 
+                                   Keyboard="Numeric"
+                                   Text="{Binding ip3}"
+                                   HorizontalTextAlignment="Center"/>
+                                    <Entry Grid.Column="3" 
+                                   Placeholder="ip4"
+                                   Keyboard="Numeric"
+                                   Text="{Binding ip4}"
+                                   HorizontalTextAlignment="Center"/>
+                                </Grid>
+                                <Label Text="PORT #"   
+                               TextColor="LightGreen"/>
+                                <Entry Placeholder="Port"   
+                               Keyboard="Numeric"                            
+                               Text="{Binding Port}"/>
+                            </StackLayout>
+                        </Frame>
+
+                        <BoxView HeightRequest="2"
+                             Margin="10"                             
+                             BackgroundColor="Red"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <Grid x:Name="loadingOverlay" IsVisible="{Binding IsLoading}"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                     >
+                    <Frame BackgroundColor="LightBlue"
+                           Opacity="0.5"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"/>
+                    <Frame OutlineColor="Black"
+                           CornerRadius="10"
+                           Padding="20"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           BackgroundColor="Black">
+                        <StackLayout Orientation="Vertical">
+                            <ActivityIndicator IsRunning="{Binding IsLoading}" BackgroundColor="Black" Color="White" />
+                            <Label Text="Loading! Please wait..."
+                                   TextColor="White"
+                                   FontAttributes="Bold"/>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

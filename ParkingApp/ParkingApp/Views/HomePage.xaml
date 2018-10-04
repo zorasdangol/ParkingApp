@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:control="clr-namespace:ParkingApp.Controls" 
+             xmlns:local="clr-namespace:ParkingApp.Views.Popups"
+             x:Class="ParkingApp.Views.HomePage"             
+             Title="Parking Out"
+             Padding="5">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label">
+                <Setter Property="VerticalTextAlignment" Value="Center" />
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="FontSize" Value="18"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid x:Name="MasterGrid">
+            <StackLayout Margin="10"
+                     VerticalOptions="FillAndExpand"
+                     HorizontalOptions="FillAndExpand">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="BarCode:"
+                       Grid.Column="0"/>
+                    <control:CustomEntry Grid.Column="1"
+                       x:Name="BarcodeEntry"
+                       Placeholder="Enter Barcode"
+                       Text="{Binding Barcode}"                        
+                       Completed="OnEnterPressed" />
+                    <Button Text="Load"
+                        Command="{Binding LoadCommand}"
+                        Grid.Column="2"/>
+                </Grid>
+
+                <Label Text="Payment Details"
+                   Margin="10"
+                   FontAttributes="Bold"/>
+                <BoxView HeightRequest="2"
+                     BackgroundColor="Black"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Charged Hours:"
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+                    <Label Text="{Binding POUT.ChargedHours}"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+
+                    <Label Text="Charged Amount:"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+                    <Label Text="{Binding POUT.ChargedAmount, StringFormat='{0:#0.00}'}"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+                    
+                    <Label Text="Total Amount:"
+                       Grid.Row="2"
+                       Grid.Column="0"/>
+                    <Label Text="{Binding POUT.CashAmount, StringFormat='{0:#0.00}'}"
+                       Grid.Row="2"
+                       Grid.Column="1"/>
+                </Grid>
+
+
+                <BoxView HeightRequest="2"
+                     BackgroundColor="Black"/>
+                <Label Text="Customer Info"
+                   FontAttributes="Bold"
+                   Margin="10,0"/>
+                <BoxView HeightRequest="2"
+                     BackgroundColor="Black"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Customer Name:"
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+                    <Label Text="{Binding POUT.BILLTO}"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+
+                    <Label Text="Address:"
+                       Grid.Row="1"
+                       Grid.Column="0"/>
+                    <Label Text="{Binding POUT.BILLTOADD}"
+                       Grid.Row="1"
+                       Grid.Column="1"/>
+
+                    <Label Text="PAN:"
+                       Grid.Row="2"
+                       Grid.Column="0"/>
+                    <Label Text="{Binding POUT.BILLTOPAN}"
+                       Grid.Row="2"
+                       Grid.Column="1"/>
+                </Grid>
+
+                <BoxView HeightRequest="2"
+                         Margin="3"
+                     BackgroundColor="Black"/>
+                
+                <Button Text="Stamp" Margin="5" Command="{Binding StampCommand}"/>
+                <Button Text="Staff" Margin="5" Command="{Binding ViewStaffBarcode}"/>
+                <Button Text="Finish" Margin="5" Command="{Binding FinishCommand}"/>
+
+            </StackLayout>
+
+            <local:LoadingPopupPage BindingContext="{Binding Path=BindingContext, Source={x:Reference Name=MasterGrid}}" />
+
+            <Grid x:Name="StaffBarcodeOverlay" IsVisible="{Binding IsStaffBarcode}"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                     >
+                <Frame BackgroundColor="LightBlue"
+                           Opacity="0.5"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"/>
+                <Frame OutlineColor="Black"
+                           CornerRadius="10"
+                           Padding="20"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="Center">
+                    <StackLayout Orientation="Vertical" Padding="10" HorizontalOptions="FillAndExpand">
+                        <Label Text="Enter Barcode"/>
+                        <control:CustomEntry x:Name="StaffCodeEntry" Text="{Binding StaffBarcode}" Placeholder="Enter Barcode"                       
+                                Completed="OnStaffEnterPressed"/>
+                        <Button Text="Load" Command="{Binding StaffCommand}"/>
+                        <Button Text="Cancel" Command="{Binding BackCommand}"/>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+            
+        </Grid>
+      
+    </ContentPage.Content>
+
+</ContentPage>

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParkingApp.Views.ParkingOutDetailsPage"
+             Title="Details"
+             Padding="5">
+    <ContentPage.Content>
+            <StackLayout Margin="10">
+            <BoxView HeightRequest="2"
+                         BackgroundColor="Black"
+                         Margin="5,10"/>
+                
+            <Label Text="In Details"
+                      FontAttributes="Bold"/>
+                <BoxView HeightRequest="2"
+                         BackgroundColor="Black"
+                         Margin="5,10"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Entrance Type:"
+                           FontAttributes="Bold"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                <Label Text="{Binding PIN.VType.Description}"
+                           Grid.Row="0"
+                           Grid.Column="1"/>
+                    <Label Text="Plate No:"
+                           FontAttributes="Bold"
+                           Grid.Row="1"
+                           Grid.Column="0"/>
+                <Label Text="{Binding PIN.PlateNo}"
+                           Grid.Row="1"
+                           Grid.Column="1"/>
+                    <Label Text="In Date:"
+                           FontAttributes="Bold"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+                <StackLayout Orientation="Horizontal" Grid.Row="2"
+                                 Grid.Column="1">
+                    <Label Text="{Binding PIN.InDate, StringFormat='{0:MM/dd/yy}'}"
+                                   />
+                    <Label Text="{Binding POUT.InMiti, StringFormat= '({0:MM/dd/yy})'}"
+                                   />
+                </StackLayout>
+                <Label Text="In Time:"
+                           FontAttributes="Bold"
+                           Grid.Row="3"
+                           Grid.Column="0"/>
+                <Label Text="{Binding PIN.InTime}"
+                           Grid.Row="3"
+                           Grid.Column="1"/>
+                </Grid>
+
+            <BoxView HeightRequest="2"
+                         BackgroundColor="Black"
+                         Margin="5,20"/>
+                
+            <Label Text="Out Details"
+                       FontAttributes="Bold"/>
+                
+                <BoxView HeightRequest="2"
+                         BackgroundColor="Black"
+                         Margin="5,10"/>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Out Date:"
+                           FontAttributes="Bold"
+                           Grid.Row="0"
+                           Grid.Column="0"/>
+                    <StackLayout Orientation="Horizontal" Grid.Row="0"
+                                 Grid.Column="1">
+                        <Label Text="{Binding POUT.OutDate, StringFormat='{0:MM/dd/yy}'}"
+                                   />
+                    <Label Text="{Binding POUT.OutMiti, StringFormat='({0:MM/dd/yy})'}"
+                                   />
+                    </StackLayout>
+
+                <Label Text="Out Time:"
+                           FontAttributes="Bold"
+                           Grid.Row="1"
+                           Grid.Column="0"/>
+                <Label Text="{Binding POUT.OutTime}"
+                           Grid.Row="1"
+                           Grid.Column="1"/>
+                    <Label Text="Interval:"
+                           FontAttributes="Bold"
+                           Grid.Row="2"
+                           Grid.Column="0"/>
+                <Label Text="{Binding POUT.Interval}"
+                           Grid.Row="2"
+                           Grid.Column="1"/>
+
+                </Grid>
+
+            </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

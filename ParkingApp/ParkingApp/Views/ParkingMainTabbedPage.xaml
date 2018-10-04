@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParkingApp.Views.ParkingMainTabbedPage"
+            Title="Parking App"
+            xmlns:local="clr-namespace:ParkingApp.Views">
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem Text="LogOut" Order="Primary" Command="{Binding LogOutCommand}"/>
+    </TabbedPage.ToolbarItems>
+    <local:HomePage x:Name="HomePage"/>
+    <local:ParkingOutDetailsPage BindingContext="{Binding Path=BindingContext, Source={x:Reference Name=HomePage}}" />
+</TabbedPage>

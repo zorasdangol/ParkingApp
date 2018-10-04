@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ParkingApp.Views.Popups.LoadingPopupPage"
+             HorizontalOptions="FillAndExpand"
+             VerticalOptions="FillAndExpand"
+      IsVisible="{Binding IsLoading}">
+        <Frame BackgroundColor="LightBlue"
+                           Opacity="0.5"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="FillAndExpand"/>
+    <Frame OutlineColor="Black"
+                           CornerRadius="10"
+                           Padding="20"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"
+                           BackgroundColor="Black">
+        <StackLayout Orientation="Vertical">
+            <ActivityIndicator IsRunning="{Binding IsLoading}" BackgroundColor="Black" Color="White" />
+            <Label Text="{Binding LoadingMessage}"
+                                   TextColor="White"
+                                   FontAttributes="Bold"/>
+        </StackLayout>
+    </Frame>
+</Grid>
